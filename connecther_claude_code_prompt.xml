@@ -1,0 +1,998 @@
+<claude_code_project_prompt>
+  <mandatory_pre_coding_protocol>
+    <absolute_rule>
+      Claude must not write code, create files, edit files, install packages, run commands, scaffold the app, or begin implementation until every required planning step below has been completed and the user has explicitly approved the plan.
+    </absolute_rule>
+
+    <phase_1_clarification_questions>
+      <instruction>
+        The first response must contain only clarification questions.
+      </instruction>
+      <instruction>
+        Ask all questions in the clarification_questions section before coding.
+      </instruction>
+      <instruction>
+        Do not skip categories.
+      </instruction>
+      <instruction>
+        Do not collapse multiple important decisions into vague questions.
+      </instruction>
+      <instruction>
+        Group questions by category so the user can answer clearly.
+      </instruction>
+      <instruction>
+        Ask follow-up questions if the user gives incomplete, vague, contradictory, or overly broad answers.
+      </instruction>
+      <instruction>
+        Continue the clarification phase until the user either answers all major questions or explicitly says to make assumptions.
+      </instruction>
+    </phase_1_clarification_questions>
+
+    <phase_2_requirement_summary>
+      <instruction>
+        After the user answers, summarize the final understood requirements.
+      </instruction>
+      <instruction>
+        Clearly separate confirmed decisions from assumptions.
+      </instruction>
+      <instruction>
+        Ask the user to correct anything that is wrong before continuing.
+      </instruction>
+      <instruction>
+        Do not code during this phase.
+      </instruction>
+    </phase_2_requirement_summary>
+
+    <phase_3_full_project_plan>
+      <instruction>
+        Before coding, produce a complete project plan covering every major part of the application.
+      </instruction>
+      <required_plan_sections>
+        <section>Product vision</section>
+        <section>Target users and account roles</section>
+        <section>MVP scope</section>
+        <section>Future version scope</section>
+        <section>Information architecture</section>
+        <section>Page-by-page feature breakdown</section>
+        <section>User flows</section>
+        <section>Authentication and authorization plan</section>
+        <section>Database schema or mocked data model plan</section>
+        <section>API route plan or state management plan</section>
+        <section>Component architecture</section>
+        <section>Design system</section>
+        <section>Responsive layout plan</section>
+        <section>Accessibility plan</section>
+        <section>Privacy and safety plan</section>
+        <section>Moderation plan</section>
+        <section>Testing plan</section>
+        <section>Deployment plan</section>
+        <section>Known tradeoffs</section>
+        <section>Open questions or assumptions</section>
+      </required_plan_sections>
+      <instruction>
+        Do not begin coding until this plan is complete.
+      </instruction>
+    </phase_3_full_project_plan>
+
+    <phase_4_user_approval_gate>
+      <instruction>
+        After presenting the complete project plan, ask the user for approval.
+      </instruction>
+      <instruction>
+        Only begin coding if the user explicitly says “approved,” “start building,” “proceed,” “code it,” “make it,” or another clearly affirmative instruction.
+      </instruction>
+      <instruction>
+        If the user requests changes to the plan, revise the plan first and ask for approval again.
+      </instruction>
+    </phase_4_user_approval_gate>
+
+    <phase_5_implementation>
+      <instruction>
+        Only after explicit user approval, begin implementation.
+      </instruction>
+      <instruction>
+        Implement the project in small, logical stages.
+      </instruction>
+      <instruction>
+        After each stage, run relevant checks before moving on.
+      </instruction>
+      <instruction>
+        Do not silently skip planned features. If a feature is too large, create a clear placeholder and explain what remains.
+      </instruction>
+    </phase_5_implementation>
+  </mandatory_pre_coding_protocol>
+
+  <question_asking_requirement>
+    <instruction>
+      The clarification questionnaire is mandatory, not optional.
+    </instruction>
+    <instruction>
+      Ask every question in the clarification_questions section before implementation.
+    </instruction>
+    <instruction>
+      The goal is to maximize product specificity before coding, even if the questionnaire is long.
+    </instruction>
+    <instruction>
+      Do not shorten the questionnaire for convenience.
+    </instruction>
+    <instruction>
+      Do not assume the user wants an MVP until the user confirms the desired scope.
+    </instruction>
+  </question_asking_requirement>
+
+  <project_identity>
+    <project_name>connectHer</project_name>
+    <project_type>Full-stack professional networking web application</project_type>
+    <one_sentence_description>
+      Build connectHer, a LinkedIn-style professional networking platform designed specifically to make career opportunities, mentorship, recruiting transparency, and industry access more visible and accessible for women.
+    </one_sentence_description>
+    <important_note>
+      Do not copy LinkedIn branding, exact UI, protected visual assets, proprietary copy, or trade dress. The product should function like a professional networking platform with similar core concepts, but it must have its own original brand, visual system, interaction design, and product identity.
+    </important_note>
+  </project_identity>
+
+  <user_original_request>
+    Make me a structured XML prompt for Claude Code to code a website for a LinkedIn specifically made for women. There should be a login and it should function identically to LinkedIn. Take your time and ask any and all clarifying questions for aspects of the design that you are unsure about, ask as many questions as you can so I can tailor the website exactly how I want it, and include the same request in the XML file. Find any Claude Code skills that would be particularly helpful. Name the website connectHer.
+  </user_original_request>
+
+  <mission>
+    <core_mission>
+      Make career opportunities more visible and accessible for women across fields of their interest.
+    </core_mission>
+    <target_users>
+      <user>College women seeking internships and full-time roles</user>
+      <user>Women entering business careers such as investment banking, consulting, private equity, venture capital, corporate leadership, tech finance, and tech sales</user>
+      <user>Early-career women looking for mentorship and career transparency</user>
+      <user>Women returning to work after childcare, caregiving, family responsibilities, or career breaks</user>
+      <user>Women founders, startup operators, and women interested in startup careers</user>
+      <user>Companies and recruiters trying to reach qualified women candidates</user>
+      <user>Mentors, executives, alumni, and professionals who want to support women’s career advancement</user>
+    </target_users>
+  </mission>
+
+  <product_positioning>
+    <problem_statement>
+      Many women entering business and high-growth career paths face networking spaces dominated by men, limited access to mentors who share similar lived experiences, transactional cold outreach, unclear recruiting processes, and communities that are event-heavy but not job-placement focused.
+    </problem_statement>
+
+    <differentiators>
+      <differentiator>
+        <title>Career transparency for women</title>
+        <description>
+          Go beyond job listings by helping women understand what life is actually like at companies.
+        </description>
+        <features>
+          <feature>Women employee reviews</feature>
+          <feature>Pay transparency</feature>
+          <feature>Promotion timeline data</feature>
+          <feature>Maternity and parental leave comparisons</feature>
+          <feature>Leadership diversity statistics</feature>
+          <feature>Safety, harassment reporting, and workplace culture indicators</feature>
+        </features>
+      </differentiator>
+
+      <differentiator>
+        <title>Breaking into male-dominated industries</title>
+        <description>
+          Help women enter lower-representation career paths such as finance, consulting, venture capital, private equity, corporate leadership, and tech sales.
+        </description>
+        <example_partners>
+          <partner>Goldman Sachs</partner>
+          <partner>Blackstone</partner>
+          <partner>McKinsey &amp; Company</partner>
+          <partner>Morgan Stanley</partner>
+          <partner>Forté Foundation</partner>
+          <partner>The Women’s Network</partner>
+        </example_partners>
+      </differentiator>
+
+      <differentiator>
+        <title>Return-to-work platform</title>
+        <description>
+          Support women who paused careers due to childcare, caregiving, family obligations, or other life responsibilities.
+        </description>
+        <features>
+          <feature>Flexible job listings</feature>
+          <feature>Remote work filters</feature>
+          <feature>Returnship programs</feature>
+          <feature>Resume refresh support</feature>
+          <feature>Career gap explanation tools</feature>
+        </features>
+      </differentiator>
+
+      <differentiator>
+        <title>Women founders and startup careers</title>
+        <description>
+          Create a Wellfound-style space for women entrepreneurs, startup operators, angel investors, startup hiring, and founder communities.
+        </description>
+      </differentiator>
+
+      <differentiator>
+        <title>Internships for college women</title>
+        <description>
+          Make internships easier to discover, compare, and apply to. Prioritize campus growth, word-of-mouth, ambassador programs, and student org partnerships.
+        </description>
+      </differentiator>
+
+      <differentiator>
+        <title>Mentorship-first platform</title>
+        <description>
+          Connect students to professionals, early-career women to managers, and rising leaders to executives who have navigated similar paths.
+        </description>
+      </differentiator>
+    </differentiators>
+  </product_positioning>
+
+  <claude_code_workflow_instructions>
+    <first_action>
+      Before coding, ask the user all clarification questions listed in the clarification_questions section. Group the questions by category. Do not begin implementation until the user answers or explicitly says to make reasonable assumptions.
+    </first_action>
+
+    <recommended_claude_code_skills>
+      <skill>
+        <name>frontend-design</name>
+        <use_for>
+          Creating a distinctive, production-grade interface with a strong brand identity, polished typography, refined spacing, animations, responsive layouts, and non-generic visual design.
+        </use_for>
+      </skill>
+      <skill>
+        <name>webapp-testing</name>
+        <use_for>
+          Testing the completed local web app with Playwright, checking login, signup, feed posting, profile creation, search, messaging, connections, job applications, mentorship booking, and responsiveness.
+        </use_for>
+      </skill>
+      <skill>
+        <name>web-artifacts-builder</name>
+        <use_for>
+          Prototyping complex React/Tailwind/shadcn UI flows, dashboards, profile cards, feeds, company pages, modals, forms, and onboarding screens.
+        </use_for>
+      </skill>
+    </recommended_claude_code_skills>
+
+    <development_process>
+      <step>Ask clarification questions.</step>
+      <step>Summarize the final product requirements from the user’s answers.</step>
+      <step>Separate confirmed requirements from assumptions.</step>
+      <step>Produce a complete product, design, technical, data, security, and testing plan.</step>
+      <step>Wait for explicit user approval.</step>
+      <step>Inspect the existing project folder before creating files.</step>
+      <step>Propose a technical plan and file structure.</step>
+      <step>Implement the app incrementally.</step>
+      <step>Run linting, type checks, and tests.</step>
+      <step>Use browser testing to verify main user flows.</step>
+      <step>Fix all visible UI, console, accessibility, and runtime errors.</step>
+      <step>Return a final summary of what was built, how to run it, and what remains.</step>
+    </development_process>
+  </claude_code_workflow_instructions>
+
+  <clarification_questions>
+    <branding_and_visual_identity>
+      <question>Should connectHer feel more premium and corporate, warm and community-driven, modern startup-like, bold and editorial, or something else?</question>
+      <question>What color palette do you want? Examples: soft rose/gold, deep navy/blush, purple/cream, black/white/lavender, emerald/cream, or something else?</question>
+      <question>Should the logo be text-only, icon-based, or both?</question>
+      <question>Do you want the “Her” in connectHer visually emphasized?</question>
+      <question>Should the design feel closer to LinkedIn, Bumble Bizz, The Wing, Handshake, Wellfound, Glassdoor, or a completely original mix?</question>
+      <question>Should the website use illustrations, real photography, abstract gradients, editorial cards, or minimal UI only?</question>
+      <question>Should the UI be playful or serious?</question>
+      <question>Should accessibility and high contrast be prioritized from the beginning?</question>
+      <question>Should the typography feel elegant, corporate, modern, academic, editorial, or startup-like?</question>
+      <question>Should the app have a light mode only, dark mode only, or both?</question>
+      <question>Should the landing page feel more like a startup pitch, a social network, a job platform, or a professional community?</question>
+    </branding_and_visual_identity>
+
+    <target_audience>
+      <question>Who is the primary first launch audience: college women, early-career women, women in finance/consulting, founders, return-to-work women, or mentors?</question>
+      <question>Should the first version be campus-focused or open to all professionals?</question>
+      <question>Should users be required to identify as women, or should the platform also allow allies, recruiters, and mentors?</question>
+      <question>Should companies and recruiters have separate account types?</question>
+      <question>Should mentors have verified mentor profiles?</question>
+      <question>Should students be able to join using university emails?</question>
+      <question>Should users be organized by school, company, industry, role, location, or career goal?</question>
+      <question>Should there be separate experiences for students, professionals, mentors, founders, recruiters, and company admins?</question>
+      <question>Should the initial launch focus on one industry, such as finance/consulting, or support many industries immediately?</question>
+    </target_audience>
+
+    <authentication_and_accounts>
+      <question>Should login support email/password only, Google OAuth, LinkedIn OAuth, university SSO, or all of these?</question>
+      <question>Should there be account verification?</question>
+      <question>Should users be able to select roles such as Student, Professional, Mentor, Founder, Recruiter, Company Admin, or Returnship Candidate?</question>
+      <question>Should the onboarding flow ask for school, company, industry, goals, location, resume, skills, and desired roles?</question>
+      <question>Should profiles be public, private, or partially visible?</question>
+      <question>Should there be privacy controls for salary data, workplace reviews, and job search status?</question>
+      <question>Should users be able to upload a resume during signup?</question>
+      <question>Should users be able to import profile data from LinkedIn manually or through a placeholder import flow?</question>
+      <question>Should users be able to pause or deactivate their account?</question>
+      <question>Should recruiter and company accounts require approval before accessing the platform?</question>
+    </authentication_and_accounts>
+
+    <core_linkedin_like_features>
+      <question>Should the home feed include posts, reposts, likes, comments, image uploads, polls, events, and article posts?</question>
+      <question>Should users be able to follow people separately from connecting?</question>
+      <question>Should connection requests require approval?</question>
+      <question>Should messaging be real-time or simulated for the MVP?</question>
+      <question>Should users receive notifications for messages, connection requests, mentions, job matches, and mentor replies?</question>
+      <question>Should profiles include experience, education, projects, certifications, skills, recommendations, featured posts, and resume uploads?</question>
+      <question>Should users be able to endorse skills and write recommendations?</question>
+      <question>Should the search bar search people, jobs, companies, posts, groups, mentors, and events?</question>
+      <question>Should there be groups or communities by industry, university, company, or identity/interests?</question>
+      <question>Should users be able to create posts with hashtags and mentions?</question>
+      <question>Should users be able to save posts, jobs, mentors, companies, and events?</question>
+      <question>Should the app include a “People You May Know” section?</question>
+      <question>Should the app include a “Who viewed your profile” feature?</question>
+    </core_linkedin_like_features>
+
+    <career_transparency_features>
+      <question>Should company pages include women employee reviews?</question>
+      <question>Should reviews be anonymous, verified, public, or visible only to logged-in users?</question>
+      <question>What rating categories should be included: pay fairness, mentorship, promotion fairness, parental leave, flexibility, safety, reporting culture, leadership diversity, work-life balance?</question>
+      <question>Should users be able to submit salary data?</question>
+      <question>Should salary data be displayed as ranges, medians, or individual anonymous entries?</question>
+      <question>Should promotion timelines be structured, such as Analyst to Associate in 2 years, or free-form?</question>
+      <question>Should company diversity stats be manually entered, scraped later, or placeholder data for now?</question>
+      <question>Should workplace safety and harassment reporting culture be handled carefully with disclaimers and moderation?</question>
+      <question>Should company reviews be moderated before publication?</question>
+      <question>Should company pages include charts, badges, summary scores, or written review highlights?</question>
+      <question>Should companies be able to respond to reviews?</question>
+      <question>Should there be a comparison page for companies?</question>
+      <question>Should the app include “best companies for women in finance,” “best returnship programs,” or similar curated rankings?</question>
+    </career_transparency_features>
+
+    <jobs_and_recruiting>
+      <question>Should jobs include internships, full-time roles, fellowships, returnships, startup roles, remote jobs, and flexible jobs?</question>
+      <question>Should users be able to apply directly on connectHer or be redirected externally?</question>
+      <question>Should the job board include filters for industry, company, location, remote, pay transparency, sponsorship, returnship, internship year, and women-friendly benefits?</question>
+      <question>Should recruiters be able to post jobs?</question>
+      <question>Should recruiters be able to search candidate profiles?</question>
+      <question>Should users get recommended jobs based on profile, goals, and saved interests?</question>
+      <question>Should there be a job application tracker?</question>
+      <question>Should there be a “warm intro” feature that shows alumni or mentors connected to a job/company?</question>
+      <question>Should users be able to save searches and get alerts?</question>
+      <question>Should the app include recruiting timelines for industries such as investment banking, consulting, private equity, and tech?</question>
+      <question>Should jobs display salary transparency and benefits transparency by default?</question>
+      <question>Should companies have enhanced recruiting pages?</question>
+    </jobs_and_recruiting>
+
+    <mentorship_features>
+      <question>Should mentorship be structured as one-time coffee chats, long-term mentorship, office hours, or all of these?</question>
+      <question>Should mentors list availability?</question>
+      <question>Should mentees be able to request meetings?</question>
+      <question>Should the app include mentor matching based on industry, identity, school, goals, location, and experience level?</question>
+      <question>Should there be built-in video links, calendar integration, or just request messaging for now?</question>
+      <question>Should mentors be able to limit how many requests they receive?</question>
+      <question>Should users rate mentorship experiences?</question>
+      <question>Should mentors be able to mark themselves as open or closed to requests?</question>
+      <question>Should mentorship requests include structured prompts so outreach feels less cold?</question>
+      <question>Should there be mentor badges such as “Finance Mentor,” “Founder Mentor,” “Returnship Mentor,” or “Campus Mentor”?</question>
+    </mentorship_features>
+
+    <community_and_content>
+      <question>Should connectHer include industry-specific communities such as Investment Banking, Consulting, Venture Capital, Tech Sales, Startups, Product Management, and Corporate Leadership?</question>
+      <question>Should there be a campus ambassador program page?</question>
+      <question>Should users be able to create events?</question>
+      <question>Should companies or mentors host AMAs?</question>
+      <question>Should there be curated guides, recruiting timelines, interview prep, resume templates, or cold outreach templates?</question>
+      <question>Should there be a content section like “Career Playbooks”?</question>
+      <question>Should communities have their own feeds?</question>
+      <question>Should users be able to join private communities?</question>
+      <question>Should there be campus-specific communities?</question>
+      <question>Should there be events for recruiting deadlines, panels, mentorship nights, resume workshops, and coffee chats?</question>
+    </community_and_content>
+
+    <safety_moderation_and_privacy>
+      <question>How strict should moderation be?</question>
+      <question>Should posts and messages support reporting and blocking?</question>
+      <question>Should users be able to hide their profile from recruiters?</question>
+      <question>Should anonymous reviews require moderation before publishing?</question>
+      <question>Should salary and workplace reviews have legal disclaimers?</question>
+      <question>Should there be admin tools for removing posts, banning users, approving companies, and reviewing flagged content?</question>
+      <question>Should the app have community guidelines and a code of conduct?</question>
+      <question>Should users be able to control who can message them?</question>
+      <question>Should users be able to control who can see their profile, resume, salary submissions, or job search status?</question>
+      <question>Should direct messages include safety warnings, report buttons, and block buttons?</question>
+      <question>Should company reviews avoid naming individual coworkers or managers?</question>
+      <question>Should anonymous reviews be aggregated to prevent identifying individual users?</question>
+    </safety_moderation_and_privacy>
+
+    <technical_stack>
+      <question>Do you want Next.js, React/Vite, plain HTML/CSS/JS, or another stack?</question>
+      <question>Should the backend use Supabase, Firebase, PostgreSQL/Prisma, MongoDB, or a mocked local JSON database for the MVP?</question>
+      <question>Should authentication be real or mocked for a frontend-only prototype?</question>
+      <question>Should the project be deployable on Vercel?</question>
+      <question>Should the UI use Tailwind CSS?</question>
+      <question>Should the UI use shadcn/ui components?</question>
+      <question>Should TypeScript be required?</question>
+      <question>Should the project include seed data for users, companies, jobs, posts, reviews, and messages?</question>
+      <question>Should the app use server components, client components, or a simpler frontend-only architecture?</question>
+      <question>Should there be a real database schema with migrations?</question>
+      <question>Should there be API routes for posts, messages, connections, reviews, jobs, and mentorship requests?</question>
+      <question>Should the app include image upload placeholders or real file storage?</question>
+    </technical_stack>
+
+    <mvp_scope>
+      <question>Should Claude build a clickable frontend prototype, a full-stack MVP, or a production-ready app?</question>
+      <question>What features are mandatory for version 1?</question>
+      <question>What features can be placeholder or mocked?</question>
+      <question>Should the login actually persist user sessions?</question>
+      <question>Should messaging actually store conversations?</question>
+      <question>Should job applications actually be saved?</question>
+      <question>Should admin dashboards be included in the first build?</question>
+      <question>Should the app be mobile-first, desktop-first, or fully responsive equally?</question>
+      <question>Should the first version prioritize visual polish or real backend functionality?</question>
+      <question>Should the first version be something you can demo to investors, something users can test, or something ready for deployment?</question>
+      <question>What is the minimum set of pages that must be fully functional?</question>
+      <question>Are there any features you explicitly do not want in version 1?</question>
+    </mvp_scope>
+
+    <monetization_and_growth>
+      <question>Should connectHer eventually make money through recruiters, company pages, premium subscriptions, sponsored events, job postings, campus partnerships, or another model?</question>
+      <question>Should recruiters pay to post jobs or access candidates?</question>
+      <question>Should students and job seekers use the platform for free?</question>
+      <question>Should there be a premium tier for resume reviews, interview prep, mentor access, or salary insights?</question>
+      <question>Should there be a campus ambassador landing page?</question>
+      <question>Should the app include referral links or invite codes?</question>
+      <question>Should the app have a waitlist before full signup?</question>
+    </monetization_and_growth>
+
+    <admin_and_internal_tools>
+      <question>Should there be an admin dashboard?</question>
+      <question>What should admins be able to manage: users, posts, reviews, jobs, companies, reports, communities, mentors, or applications?</question>
+      <question>Should admins approve company pages?</question>
+      <question>Should admins approve mentor verification?</question>
+      <question>Should admins be able to feature jobs, posts, communities, or mentors?</question>
+      <question>Should admins see analytics such as user growth, active users, posts, job applications, mentor requests, and company reviews?</question>
+    </admin_and_internal_tools>
+
+    <testing_and_quality>
+      <question>Should Claude write automated tests?</question>
+      <question>Should Playwright tests be required for login, signup, feed, jobs, mentorship, messaging, and company pages?</question>
+      <question>Should unit tests be included for filtering, search, data helpers, and form validation?</question>
+      <question>Should the app be checked for accessibility with keyboard navigation and labels?</question>
+      <question>Should Claude run linting, type checking, and build commands before finalizing?</question>
+      <question>Should the final response include known bugs and unfinished items?</question>
+    </testing_and_quality>
+  </clarification_questions>
+
+  <default_assumptions_if_user_explicitly_allows_assumptions>
+    <assumption>Use Next.js with TypeScript.</assumption>
+    <assumption>Use Tailwind CSS and shadcn/ui-style components.</assumption>
+    <assumption>Use Supabase or a local mocked data layer if credentials are unavailable.</assumption>
+    <assumption>Create a fully responsive MVP with realistic seeded data.</assumption>
+    <assumption>Include authentication UI and mocked session behavior if real auth is not configured.</assumption>
+    <assumption>Design an original brand, not a LinkedIn clone.</assumption>
+    <assumption>Prioritize student users, mentors, jobs, company transparency, and networking.</assumption>
+    <assumption>Use fictional company review data unless real data sources are explicitly provided.</assumption>
+    <assumption>Build enough functionality for an investor/demo-quality prototype unless the user requests production readiness.</assumption>
+  </default_assumptions_if_user_explicitly_allows_assumptions>
+
+  <required_pages>
+    <public_pages>
+      <page>
+        <name>Landing Page</name>
+        <requirements>
+          <item>Hero section explaining connectHer’s mission</item>
+          <item>Clear CTA buttons: Join connectHer, Find Mentors, Explore Jobs</item>
+          <item>Sections for career transparency, mentorship, internships, returnships, founders, and male-dominated industries</item>
+          <item>Partner logo placeholders</item>
+          <item>Testimonials or sample success stories</item>
+          <item>Preview of jobs, mentors, and company transparency features</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Login</name>
+        <requirements>
+          <item>Email and password login form</item>
+          <item>Forgot password link</item>
+          <item>Google/LinkedIn OAuth buttons as UI placeholders if not implemented</item>
+          <item>Clean redirect to authenticated dashboard</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Signup and Onboarding</name>
+        <requirements>
+          <item>Choose account type</item>
+          <item>Enter name, email, school/company, industry, goals, location, skills, and experience level</item>
+          <item>Select interests such as internships, mentorship, returnships, startups, finance, consulting, VC, PE, tech sales, leadership</item>
+          <item>Profile completion progress indicator</item>
+          <item>Preference setup for privacy and visibility</item>
+        </requirements>
+      </page>
+    </public_pages>
+
+    <authenticated_pages>
+      <page>
+        <name>Home Feed</name>
+        <requirements>
+          <item>Create post composer</item>
+          <item>Feed of posts from people, mentors, companies, and groups</item>
+          <item>Like, comment, repost, save, and share actions</item>
+          <item>Suggested mentors, jobs, and communities sidebar</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Profile</name>
+        <requirements>
+          <item>Profile header with photo, name, title, school/company, location, and goals</item>
+          <item>About section</item>
+          <item>Experience</item>
+          <item>Education</item>
+          <item>Skills</item>
+          <item>Featured posts/projects</item>
+          <item>Recommendations</item>
+          <item>Mentorship status badge</item>
+          <item>Resume and portfolio links if applicable</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Network</name>
+        <requirements>
+          <item>Connection requests</item>
+          <item>People you may know</item>
+          <item>Mentor suggestions</item>
+          <item>Filters by industry, school, company, location, career goal, and seniority</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Jobs</name>
+        <requirements>
+          <item>Job listings and internship listings</item>
+          <item>Filters for industry, location, remote, returnship, internship, pay transparency, women-friendly benefits, and company rating</item>
+          <item>Save job</item>
+          <item>Apply or external apply button</item>
+          <item>Application tracker</item>
+          <item>Recommended jobs based on user profile</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Mentorship</name>
+        <requirements>
+          <item>Mentor directory</item>
+          <item>Mentor profile cards</item>
+          <item>Request mentorship button</item>
+          <item>Office hours cards</item>
+          <item>Matching quiz or matching filters</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Company Transparency</name>
+        <requirements>
+          <item>Company profile pages</item>
+          <item>Women employee reviews</item>
+          <item>Salary ranges</item>
+          <item>Promotion timelines</item>
+          <item>Parental leave details</item>
+          <item>Leadership diversity stats</item>
+          <item>Safety and reporting culture indicators</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Messages</name>
+        <requirements>
+          <item>Conversation list</item>
+          <item>Message thread UI</item>
+          <item>Suggested icebreakers for professional outreach</item>
+          <item>Mentor request messages</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Communities</name>
+        <requirements>
+          <item>Groups by industry and university</item>
+          <item>Community feed</item>
+          <item>Join community button</item>
+          <item>Events, AMAs, and discussion prompts</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Notifications</name>
+        <requirements>
+          <item>Connection requests</item>
+          <item>Messages</item>
+          <item>Job matches</item>
+          <item>Mentor responses</item>
+          <item>Post interactions</item>
+        </requirements>
+      </page>
+
+      <page>
+        <name>Admin Dashboard</name>
+        <requirements>
+          <item>User moderation</item>
+          <item>Flagged content queue</item>
+          <item>Company approval queue</item>
+          <item>Anonymous review moderation</item>
+          <item>Basic analytics</item>
+        </requirements>
+      </page>
+    </authenticated_pages>
+  </required_pages>
+
+  <core_data_models>
+    <model name="User">
+      <field>id</field>
+      <field>name</field>
+      <field>email</field>
+      <field>role</field>
+      <field>headline</field>
+      <field>location</field>
+      <field>school</field>
+      <field>company</field>
+      <field>industry_interests</field>
+      <field>career_goals</field>
+      <field>skills</field>
+      <field>profile_photo_url</field>
+      <field>privacy_settings</field>
+    </model>
+
+    <model name="Post">
+      <field>id</field>
+      <field>author_id</field>
+      <field>content</field>
+      <field>media_url</field>
+      <field>created_at</field>
+      <field>likes_count</field>
+      <field>comments_count</field>
+      <field>reposts_count</field>
+    </model>
+
+    <model name="Connection">
+      <field>id</field>
+      <field>requester_id</field>
+      <field>receiver_id</field>
+      <field>status</field>
+      <field>created_at</field>
+    </model>
+
+    <model name="Job">
+      <field>id</field>
+      <field>company_id</field>
+      <field>title</field>
+      <field>location</field>
+      <field>remote_type</field>
+      <field>employment_type</field>
+      <field>industry</field>
+      <field>salary_range</field>
+      <field>is_returnship</field>
+      <field>is_internship</field>
+      <field>description</field>
+      <field>requirements</field>
+    </model>
+
+    <model name="Company">
+      <field>id</field>
+      <field>name</field>
+      <field>industry</field>
+      <field>description</field>
+      <field>logo_url</field>
+      <field>diversity_stats</field>
+      <field>parental_leave_policy</field>
+      <field>promotion_timeline_summary</field>
+    </model>
+
+    <model name="CompanyReview">
+      <field>id</field>
+      <field>company_id</field>
+      <field>author_id_or_anonymous</field>
+      <field>rating</field>
+      <field>pay_fairness_rating</field>
+      <field>mentorship_rating</field>
+      <field>promotion_fairness_rating</field>
+      <field>parental_leave_rating</field>
+      <field>safety_culture_rating</field>
+      <field>review_text</field>
+      <field>moderation_status</field>
+    </model>
+
+    <model name="MentorshipRequest">
+      <field>id</field>
+      <field>mentor_id</field>
+      <field>mentee_id</field>
+      <field>message</field>
+      <field>status</field>
+      <field>created_at</field>
+    </model>
+
+    <model name="Message">
+      <field>id</field>
+      <field>conversation_id</field>
+      <field>sender_id</field>
+      <field>body</field>
+      <field>created_at</field>
+    </model>
+
+    <model name="Community">
+      <field>id</field>
+      <field>name</field>
+      <field>description</field>
+      <field>category</field>
+      <field>member_count</field>
+    </model>
+
+    <model name="JobApplication">
+      <field>id</field>
+      <field>user_id</field>
+      <field>job_id</field>
+      <field>status</field>
+      <field>applied_at</field>
+      <field>notes</field>
+    </model>
+
+    <model name="Notification">
+      <field>id</field>
+      <field>user_id</field>
+      <field>type</field>
+      <field>title</field>
+      <field>body</field>
+      <field>is_read</field>
+      <field>created_at</field>
+    </model>
+  </core_data_models>
+
+  <design_requirements>
+    <visual_style>
+      <item>Original, premium, modern, and trustworthy</item>
+      <item>Professional enough for finance/consulting users but warm enough for mentorship/community</item>
+      <item>Responsive across desktop, tablet, and mobile</item>
+      <item>Use consistent spacing, typography, cards, badges, and navigation</item>
+      <item>Avoid generic AI-looking purple gradients unless intentionally refined</item>
+      <item>Use tasteful motion and microinteractions</item>
+      <item>Use a distinct connectHer brand system rather than imitating LinkedIn directly</item>
+    </visual_style>
+
+    <layout_requirements>
+      <item>Authenticated app should have a top navigation bar or left sidebar similar to professional social platforms, but visually original</item>
+      <item>Home page should use a three-column desktop layout: left profile summary, center feed, right recommendations</item>
+      <item>Mobile layout should collapse cleanly with bottom navigation or compact header navigation</item>
+      <item>Use reusable components for cards, buttons, forms, profile previews, job cards, company cards, mentor cards, and modals</item>
+    </layout_requirements>
+  </design_requirements>
+
+  <functionality_requirements>
+    <auth>
+      <item>Implement login page</item>
+      <item>Implement signup page</item>
+      <item>Implement protected routes or simulated protected routes</item>
+      <item>Persist login state locally if backend is mocked</item>
+    </auth>
+
+    <networking>
+      <item>Send connection requests</item>
+      <item>Accept or ignore connection requests</item>
+      <item>Follow users or companies if included</item>
+      <item>Search and filter people</item>
+    </networking>
+
+    <feed>
+      <item>Create a post</item>
+      <item>Render seeded posts</item>
+      <item>Like and comment interactions</item>
+      <item>Save posts</item>
+    </feed>
+
+    <jobs>
+      <item>Browse jobs</item>
+      <item>Filter jobs</item>
+      <item>Save jobs</item>
+      <item>Apply to jobs or simulate application</item>
+      <item>Track application status</item>
+    </jobs>
+
+    <mentorship>
+      <item>Browse mentors</item>
+      <item>Filter mentors by industry, school, company, seniority, and availability</item>
+      <item>Request mentorship</item>
+      <item>Render mentorship request status</item>
+    </mentorship>
+
+    <company_transparency>
+      <item>Browse companies</item>
+      <item>View company ratings and reviews</item>
+      <item>Submit anonymous or named review depending on chosen scope</item>
+      <item>Display salary and promotion timeline data</item>
+    </company_transparency>
+
+    <messaging>
+      <item>Render message inbox</item>
+      <item>Render conversation thread</item>
+      <item>Send messages in mocked/local state if no real backend</item>
+      <item>Include outreach templates and mentor icebreakers</item>
+    </messaging>
+  </functionality_requirements>
+
+  <full_project_plan_requirements>
+    <instruction>
+      Before coding, Claude must create a complete plan with the following sections.
+    </instruction>
+
+    <section name="Product Vision">
+      <item>Describe what connectHer is</item>
+      <item>Explain who it serves</item>
+      <item>Explain what makes it different from LinkedIn, Handshake, Glassdoor, Fairygodboss, and Wellfound</item>
+    </section>
+
+    <section name="User Roles">
+      <item>Student user</item>
+      <item>Professional user</item>
+      <item>Mentor</item>
+      <item>Founder</item>
+      <item>Recruiter</item>
+      <item>Company admin</item>
+      <item>Platform admin</item>
+    </section>
+
+    <section name="MVP Scope">
+      <item>Define what will be fully functional in the first build</item>
+      <item>Define what will be mocked</item>
+      <item>Define what will be intentionally excluded</item>
+    </section>
+
+    <section name="Future Scope">
+      <item>List features for later versions</item>
+      <item>Separate version 2 features from long-term platform features</item>
+    </section>
+
+    <section name="Information Architecture">
+      <item>List public pages</item>
+      <item>List authenticated pages</item>
+      <item>List admin pages</item>
+      <item>Explain navigation structure</item>
+    </section>
+
+    <section name="User Flows">
+      <item>Signup and onboarding flow</item>
+      <item>Login flow</item>
+      <item>Create profile flow</item>
+      <item>Create post flow</item>
+      <item>Send connection request flow</item>
+      <item>Apply to job flow</item>
+      <item>Request mentorship flow</item>
+      <item>Submit company review flow</item>
+      <item>Send message flow</item>
+      <item>Admin moderation flow</item>
+    </section>
+
+    <section name="Technical Architecture">
+      <item>Frontend stack</item>
+      <item>Backend or mocked backend plan</item>
+      <item>Authentication plan</item>
+      <item>Database or seed data plan</item>
+      <item>API route plan</item>
+      <item>State management plan</item>
+      <item>Folder structure</item>
+    </section>
+
+    <section name="Component Architecture">
+      <item>Layout components</item>
+      <item>Navigation components</item>
+      <item>Feed components</item>
+      <item>Profile components</item>
+      <item>Job components</item>
+      <item>Company transparency components</item>
+      <item>Mentorship components</item>
+      <item>Messaging components</item>
+      <item>Form components</item>
+      <item>Admin components</item>
+    </section>
+
+    <section name="Design System">
+      <item>Color palette</item>
+      <item>Typography</item>
+      <item>Spacing</item>
+      <item>Cards</item>
+      <item>Buttons</item>
+      <item>Inputs</item>
+      <item>Badges</item>
+      <item>Icons</item>
+      <item>Motion and transitions</item>
+      <item>Responsive behavior</item>
+    </section>
+
+    <section name="Privacy Safety and Moderation">
+      <item>Profile visibility</item>
+      <item>Anonymous reviews</item>
+      <item>Reporting and blocking</item>
+      <item>Admin review queues</item>
+      <item>Community guidelines</item>
+      <item>Workplace review disclaimers</item>
+    </section>
+
+    <section name="Testing and Deployment">
+      <item>Manual testing checklist</item>
+      <item>Automated testing plan</item>
+      <item>Accessibility testing plan</item>
+      <item>Browser testing plan</item>
+      <item>Build verification</item>
+      <item>Deployment plan</item>
+    </section>
+  </full_project_plan_requirements>
+
+  <testing_requirements>
+    <manual_tests>
+      <test>User can visit landing page</test>
+      <test>User can sign up</test>
+      <test>User can log in</test>
+      <test>User can complete onboarding</test>
+      <test>User can view feed</test>
+      <test>User can create a post</test>
+      <test>User can search people</test>
+      <test>User can send a connection request</test>
+      <test>User can view jobs</test>
+      <test>User can save/apply to a job</test>
+      <test>User can browse mentors</test>
+      <test>User can request mentorship</test>
+      <test>User can view company transparency data</test>
+      <test>User can open messages and send a message</test>
+      <test>Layout works on mobile, tablet, and desktop</test>
+    </manual_tests>
+
+    <automated_tests>
+      <item>Add unit tests where practical</item>
+      <item>Add Playwright tests for major flows if using webapp-testing</item>
+      <item>Run lint and typecheck</item>
+      <item>Check browser console for errors</item>
+      <item>Check accessibility basics such as labels, focus states, contrast, keyboard navigation, and semantic HTML</item>
+    </automated_tests>
+  </testing_requirements>
+
+  <seed_data_requirements>
+    <item>Create realistic sample users including students, analysts, consultants, founders, recruiters, executives, and returnship candidates</item>
+    <item>Create sample companies such as fictional finance, consulting, startup, and tech companies</item>
+    <item>Create realistic jobs, internships, returnships, and startup roles</item>
+    <item>Create sample posts about recruiting, mentorship, career advice, company culture, and events</item>
+    <item>Create sample company reviews with ratings and transparency metrics</item>
+    <item>Create sample mentor profiles</item>
+    <item>Create sample communities</item>
+    <item>Create sample messages and notifications</item>
+  </seed_data_requirements>
+
+  <security_privacy_and_ethics>
+    <item>Do not expose private user information unnecessarily</item>
+    <item>Make anonymous workplace reviews visibly anonymous</item>
+    <item>Add moderation states for sensitive reviews</item>
+    <item>Add report and block affordances</item>
+    <item>Add clear privacy settings in user profile or settings</item>
+    <item>Do not make claims that a company is unsafe or discriminatory unless it is seed/mock data clearly marked as fictional</item>
+    <item>Use fictional company review data unless real data sources are explicitly provided later</item>
+    <item>Avoid implying that the app has verified real company data unless verification is actually implemented</item>
+  </security_privacy_and_ethics>
+
+  <final_deliverables>
+    <deliverable>Working web application code</deliverable>
+    <deliverable>Clear project structure</deliverable>
+    <deliverable>Reusable components</deliverable>
+    <deliverable>Seed data</deliverable>
+    <deliverable>Login/signup/onboarding flow</deliverable>
+    <deliverable>Authenticated professional networking dashboard</deliverable>
+    <deliverable>Feed, profiles, network, jobs, mentorship, company transparency, messages, communities, and admin UI</deliverable>
+    <deliverable>Responsive design</deliverable>
+    <deliverable>Instructions for running locally</deliverable>
+    <deliverable>Summary of implemented features and future improvements</deliverable>
+    <deliverable>Testing summary</deliverable>
+    <deliverable>Known limitations</deliverable>
+  </final_deliverables>
+
+  <execution_instruction>
+    You must follow the mandatory_pre_coding_protocol exactly.
+
+    Your first response must only ask clarification questions. Do not code. Do not create files. Do not run terminal commands. Do not scaffold the app. Do not summarize the project yet.
+
+    Ask all clarification questions needed to tailor connectHer exactly to the user’s desired product, design, features, technical stack, user flows, data structure, privacy model, moderation system, and launch scope.
+
+    After the user answers, summarize the final requirements and separate confirmed decisions from assumptions.
+
+    Then create a complete project plan covering product strategy, UX, UI, architecture, data models, pages, components, authentication, authorization, user flows, safety, moderation, testing, and deployment.
+
+    Only after the user explicitly approves the plan may you begin coding.
+
+    Build connectHer as an original professional networking platform for women with LinkedIn-like professional networking functionality, while differentiating it through mentorship, career transparency, returnships, internships, women founders, and support for entering male-dominated industries.
+  </execution_instruction>
+</claude_code_project_prompt>
